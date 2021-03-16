@@ -1,0 +1,62 @@
+<!-- 左 -->
+<v-flex lg9 md9 sm12>
+  <v-layout row wrap>
+    <v-flex lg3 md4 sm5 xs6>
+      <div class="img-content" v-if="item.postImages.length > 0">
+        <img class="img-responsive"
+             :src="`${$fileUrl}/public/uploads/o/company/post/${item.id}/${item.postImages[0].key}`"
+             lazy-src="https://dummyimage.com/600x400/ddd/fff"/>
+      </div>
+    </v-flex>
+
+    <v-flex lg9 md8 sm7 xs6>
+      <v-card-text class="text-xs-left py-0">
+        <div class="mb-3 text-no-wrap text-truncate title">{{item.title}}</div>
+        <div class=" mb-3 text-no-wrap text-truncate ">
+          <v-icon color="grey">access_time</v-icon>
+          <span class="ml-2 subheading body-1 grey--text">{{item.createdAt | time}}</span>
+
+        </div>
+        <v-divider class="mb-2"></v-divider>
+        <div>
+          <p class="three-line-overflow pb-0 ">{{item.content | filterText}}</p>
+        </div>
+
+      </v-card-text>
+
+    </v-flex>
+  </v-layout>
+</v-flex>
+
+<!-- 右 -->
+<v-flex lg3 md3 hidden-sm-only hidden-xs-only>
+  <v-layout row wrap fill-height align-center>
+    <v-flex md12>
+      <v-card-text class="text-xs-left pr-4" style="border-left: 1px solid #ddd;">
+        <div class=" mb-4 text-no-wrap text-truncate title primary--text"></div>
+        <div class="mb-0">
+          <v-layout row class="text-xs-left">
+            <v-flex xs4>
+              <div class="text-no-wrap text-truncate">
+                <span class="number" v-if="item.organization.scale === 'BETWEEN30AND50'">30-50</span>
+                <span class="number" v-if="item.organization.scale === 'BETWEEN50AND100'">50-100</span>
+                <span class="number" v-if="item.organization.scale === 'MORETHAN100'">100+</span>
+              </div>
+              <div class="text-no-wrap grey--text text-truncate">{{ $t("cocShow.navbar.scale") }}</div>
+            </v-flex>
+            <v-divider vertical class="mr-3 ml-1"></v-divider>
+            <v-flex xs4>
+              <div class="text-no-wrap text-truncate">{{item.organization.name}}</div>
+              <div class="text-no-wrap grey--text text-truncate">{{ $t("chamber.select.industry") }}</div>
+            </v-flex>
+            <!--                        <v-divider vertical class="mr-3 ml-1"></v-divider>-->
+            <!--                        <v-flex xs4>-->
+            <!--                          <div class="text-no-wrap text-truncate">{{item.view}}{{$t('cocShow.news.views')}}</div>-->
+            <!--                          <div class="grey&#45;&#45;text">{{ $t("cocShow.news.hot") }}</div>-->
+            <!--                        </v-flex>-->
+          </v-layout>
+        </div>
+      </v-card-text>
+    </v-flex>
+  </v-layout>
+</v-flex>
